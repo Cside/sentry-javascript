@@ -54,6 +54,8 @@ export class InboundFilters implements Integration {
 
   /** JSDoc */
   public shouldDropEvent(event: SentryEvent, options: InboundFiltersOptions): boolean {
+    const url = this.getEventFilterUrl(event);
+    console.log(`# ${url}`);
     if (this.isIgnoredError(event, options)) {
       logger.warn(
         `Event dropped due to being matched by \`ignoreErrors\` option.\nEvent: ${getEventDescription(event)}`,
